@@ -1,6 +1,6 @@
 import { Card, Button, Col, Stack } from 'react-bootstrap'
 
-const ListBooks = ({ item, handleEditForm }) => {
+const ListBooks = ({ item, handleEditForm, handledButtonRemove }) => {
   return (
     <>
       <Col>
@@ -13,7 +13,7 @@ const ListBooks = ({ item, handleEditForm }) => {
             </Card.Text>
             <Stack gap={2} className='col-md-5 mx-auto'>
               <Button variant='secondary' onClick={() => handleEditForm(item)}>Editar</Button>
-              <Button variant='outline-secondary'>Remover</Button>
+              <Button variant='outline-secondary' onClick={() => handledButtonRemove(item)}>Remover</Button>
             </Stack>
           </Card.Body>
         </Card>

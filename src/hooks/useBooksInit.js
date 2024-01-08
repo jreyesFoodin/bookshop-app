@@ -56,11 +56,34 @@ export const useBooksInit = () => {
   }
   const handleClose = () => {
     setShow(false)
+    setStatus('add')
   }
   const handleEditForm = (value) => {
     setInfo(value)
     setStatus('edit')
     setShow(true)
+  }
+  const handledButtonRemove = (value) => {
+    const messageStatus = `¿Desea eliminar el libro ${value.nameBook} ?`
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+      title: messageStatus,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si, quiero!',
+      cancelButtonText: 'No, quiero!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        handleActionForm('remove', null, value.id)
+      }
+    })
   }
   return {
     data,
@@ -71,6 +94,7 @@ export const useBooksInit = () => {
     handleClickButton,
     handleActionForm,
     handleClose,
-    handleEditForm
+    handleEditForm,
+    handledButtonRemove
   }
 }
