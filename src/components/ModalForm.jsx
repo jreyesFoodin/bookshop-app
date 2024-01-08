@@ -3,17 +3,24 @@ import { Formik, Form as FormFormik } from 'formik'
 import InputText from '../components/InputText'
 import TextArea from './TextArea'
 import Button from '../components/Button'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import * as Yup from 'yup'
 
-const ModalForm = ({ show, handleClose, status, handleActionForm }) => {
+const ModalForm = ({ show, handleClose, status, handleActionForm, info }) => {
   const [loading, setLoading] = useState(false)
-  const [initialValues] = useState({
+  const [idBook, setIdBook] = useState(null)
+  const [initialValues, setInitialValues] = useState({
     nameBook: '',
     descriptionBook: '',
     stock: 0,
     urlImg: ''
   })
+  useEffect(() => {
+    if (status === 'edit') {
+      setInitialValues(info)
+      setIdBook(info.id)
+    }
+  }, [])
   const validationSchema = Yup.object({
     nameBook: Yup.string().required('El nombre del libro es obligatorio'),
     descriptionBook: Yup.string().required('La descripción del libro es obligatoria'),
@@ -23,14 +30,15 @@ const ModalForm = ({ show, handleClose, status, handleActionForm }) => {
   return (
     <Modal show={show} onHide={handleClose} size='lg'>
       <Modal.Header closeButton>
-        <Modal.Title>Agregar Libro</Modal.Title>
+        <Modal.Title>{status === 'add' ? 'Agregar Libro' : 'Editar Libro'}</Modal.Title>
       </Modal.Header>
       <Formik
+        enableReinitialize
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={async (values) => {
           setLoading(true)
-          await handleActionForm(status, values)
+          await handleActionForm(status, values, idBook)
           setLoading(false)
         }}
       >
@@ -64,7 +72,7 @@ const ModalForm = ({ show, handleClose, status, handleActionForm }) => {
               Cerrar
             </Button>
             <Button variant='primary' loading={loading} disabled={loading} type='submit'>
-              Guardar
+              {status === 'add' ? 'Guardar' : 'Editar'}
             </Button>
           </Modal.Footer>
         </FormFormik>

@@ -7,7 +7,7 @@ import Loading from './components/Loading'
 import './App.css'
 
 const App = () => {
-  const { handleClickButton, show, status, loading, handleActionForm, data, handleClose } = useBooksInit()
+  const { handleClickButton, show, status, loading, handleActionForm, data, handleClose, info, handleEditForm } = useBooksInit()
   return (
     <ContainerCustoms>
       <Button onClick={() => handleClickButton('add')}>Agregar nuevo Libro</Button>
@@ -16,6 +16,7 @@ const App = () => {
         handleActionForm={handleActionForm}
         status={status}
         handleClose={handleClose}
+        info={info}
       />
       {loading
         ? <Loading />
@@ -24,7 +25,7 @@ const App = () => {
             {data.map((item, key) => {
               return (
                 <div key={key}>
-                  <ListBooks item={item} />
+                  <ListBooks item={item} handleEditForm={handleEditForm} />
                 </div>
               )
             })}

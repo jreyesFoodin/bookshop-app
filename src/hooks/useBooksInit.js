@@ -7,6 +7,7 @@ export const useBooksInit = () => {
   const [show, setShow] = useState(false)
   const [status, setStatus] = useState('add')
   const [loading, setLoading] = useState(false)
+  const [info, setInfo] = useState({})
   useEffect(() => {
     initBook()
   }, [])
@@ -20,7 +21,7 @@ export const useBooksInit = () => {
   }
   const handleClickButton = (value) => {
     setStatus(value)
-    setShow(!show)
+    setShow(true)
   }
   const handleActionForm = async (status, body, id) => {
     let response = ''
@@ -34,7 +35,7 @@ export const useBooksInit = () => {
     if (response.success) {
       Swal.fire({
         title: 'Felicidades',
-        text: 'Se realizo bien la accion',
+        text: response.message,
         icon: 'success',
         confirmButtonText: 'Aceptar'
       }).then((result) => {
@@ -56,12 +57,20 @@ export const useBooksInit = () => {
   const handleClose = () => {
     setShow(false)
   }
+  const handleEditForm = (value) => {
+    setInfo(value)
+    setStatus('edit')
+    setShow(true)
+  }
   return {
     data,
     status,
     loading,
+    info,
+    show,
     handleClickButton,
     handleActionForm,
-    handleClose
+    handleClose,
+    handleEditForm
   }
 }
