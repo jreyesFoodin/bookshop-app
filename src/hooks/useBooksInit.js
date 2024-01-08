@@ -8,6 +8,7 @@ export const useBooksInit = () => {
   const [status, setStatus] = useState('add')
   const [loading, setLoading] = useState(false)
   const [info, setInfo] = useState({})
+  const [searchTerm, setSearchTerm] = useState('')
   useEffect(() => {
     initBook()
   }, [])
@@ -85,16 +86,30 @@ export const useBooksInit = () => {
       }
     })
   }
+  const handleSearch = (e) => {
+    const term = e.target.value
+    setSearchTerm(term)
+  }
+  const filteredData = data.filter((book) => {
+    const searchTermLower = searchTerm.toLowerCase()
+    return (
+      String(book.stock).includes(searchTermLower) ||
+      book.nameBook.toLowerCase().includes(searchTermLower) ||
+      book.descriptionBook.toLowerCase().includes(searchTermLower)
+    )
+  })
   return {
-    data,
+    filteredData,
     status,
     loading,
     info,
     show,
+    searchTerm,
     handleClickButton,
     handleActionForm,
     handleClose,
     handleEditForm,
-    handledButtonRemove
+    handledButtonRemove,
+    handleSearch
   }
 }

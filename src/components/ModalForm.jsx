@@ -9,7 +9,7 @@ import * as Yup from 'yup'
 const ModalForm = ({ show, handleClose, status, handleActionForm, info }) => {
   const [loading, setLoading] = useState(false)
   const [idBook, setIdBook] = useState(null)
-  const [initialValues, setInitialValues] = useState({
+  const [initialValues] = useState({
     nameBook: '',
     descriptionBook: '',
     stock: 0,
@@ -17,7 +17,6 @@ const ModalForm = ({ show, handleClose, status, handleActionForm, info }) => {
   })
   useEffect(() => {
     if (status === 'edit') {
-      setInitialValues(info)
       setIdBook(info.id)
     }
   }, [])
@@ -34,7 +33,7 @@ const ModalForm = ({ show, handleClose, status, handleActionForm, info }) => {
       </Modal.Header>
       <Formik
         enableReinitialize
-        initialValues={initialValues}
+        initialValues={status === 'add' ? initialValues : info}
         validationSchema={validationSchema}
         onSubmit={async (values) => {
           setLoading(true)
