@@ -21,7 +21,6 @@ export const useBooksInit = () => {
     setLoading(false)
   }
   const handleClickButton = (value) => {
-    console.log('value', value)
     setStatus(value)
     setShow(true)
   }

@@ -32,6 +32,7 @@ const App = () => {
         handleClose={handleClose}
         info={info}
       />
+      <Header handleClickButton={handleClickButton} searchTerm={searchTerm} handleSearch={handleSearch} />
       {loading
         ? <Loading />
         : (
@@ -39,7 +40,6 @@ const App = () => {
             {filteredData.length > 0
               ? (
                 <>
-                  <Header handleClickButton={handleClickButton} searchTerm={searchTerm} handleSearch={handleSearch} />
                   <Row className='g-4 py-5 row-cols-1 row-cols-lg-3 border mb-4'>
                     {filteredData.map((item, key) => {
                       return (
@@ -51,7 +51,7 @@ const App = () => {
                   </Row>
                 </>
                 )
-              : <NotFound handleClickButton={handleClickButton} />}
+              : <NotFound searchTerm={searchTerm} />}
           </>
           )}
     </ContainerCustoms>
