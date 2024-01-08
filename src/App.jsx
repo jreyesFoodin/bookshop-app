@@ -24,19 +24,23 @@ const App = () => {
           <>
             <div className='d-md-flex align-items-center justify-content-between mb-4'>
               <div>
-                <Button onClick={() => handleClickButton('add')}>Agregar nuevo Libro</Button>
+                <Button variant='success' onClick={() => handleClickButton('add')}>Agregar nuevo Libro</Button>
               </div>
-              <Search searchTerm={searchTerm} handleSearch={handleSearch} />
+              {filteredData.length > 0 && <Search searchTerm={searchTerm} handleSearch={handleSearch} />}
             </div>
-            <Row className='g-4 py-5 row-cols-1 row-cols-lg-3'>
-              {filteredData.map((item, key) => {
-                return (
-                  <div key={key}>
-                    <ListBooks item={item} handleEditForm={handleEditForm} handledButtonRemove={handledButtonRemove} />
-                  </div>
+            {filteredData.length > 0
+              ? (
+                <Row className='g-4 py-5 row-cols-1 row-cols-lg-3'>
+                  {filteredData.map((item, key) => {
+                    return (
+                      <div key={key}>
+                        <ListBooks item={item} handleEditForm={handleEditForm} handledButtonRemove={handledButtonRemove} />
+                      </div>
+                    )
+                  })}
+                </Row>
                 )
-              })}
-            </Row>
+              : null}
           </>
           )}
     </ContainerCustoms>
