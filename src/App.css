@@ -1,0 +1,11 @@
+.main-app {
+  min-height: 0;
+  height: calc(100vh - 74px)
+}
+
+
+.main {
+  min-height: 100vh;
+  margin-top: 74pxr;
+  background-color: black;
+}
