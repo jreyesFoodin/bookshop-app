@@ -1,11 +1,11 @@
-import { Row, Button } from 'react-bootstrap'
+import { Row } from 'react-bootstrap'
 import { useBooksInit } from './hooks/useBooksInit'
 import ListBooks from './components/ListBooks'
 import ContainerCustoms from './components/ContainerCustoms'
 import ModalForm from './components/ModalForm'
 import Loading from './components/Loading'
-import Search from './components/Search'
 import NotFound from './components/NotFound'
+import Header from './components/Header'
 import './App.css'
 
 const App = () => {
@@ -26,12 +26,7 @@ const App = () => {
             {filteredData.length > 0
               ? (
                 <>
-                  <div className='d-md-flex align-items-center justify-content-between mb-4'>
-                    <div>
-                      <Button variant='success' onClick={() => handleClickButton('add')}>Agregar nuevo Libro</Button>
-                    </div>
-                    <Search searchTerm={searchTerm} handleSearch={handleSearch} />
-                  </div>
+                  <Header handleClickButton={handleClickButton} searchTerm={searchTerm} handleSearch={handleSearch} />
                   <Row className='g-4 py-5 row-cols-1 row-cols-lg-3 border mb-4'>
                     {filteredData.map((item, key) => {
                       return (
