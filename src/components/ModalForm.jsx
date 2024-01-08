@@ -6,7 +6,7 @@ import Button from '../components/Button'
 import { useState } from 'react'
 import * as Yup from 'yup'
 
-const ModalForm = ({ show, handleClose, status }) => {
+const ModalForm = ({ show, handleClose, status, handleActionForm }) => {
   const [loading, setLoading] = useState(false)
   const [initialValues] = useState({
     nameBook: '',
@@ -30,7 +30,7 @@ const ModalForm = ({ show, handleClose, status }) => {
         validationSchema={validationSchema}
         onSubmit={async (values) => {
           setLoading(true)
-          // await actionChange(values)
+          await handleActionForm(status, values)
           setLoading(false)
         }}
       >

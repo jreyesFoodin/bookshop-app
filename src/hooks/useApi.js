@@ -17,7 +17,6 @@ const useApi = () => {
   const [loading, setLoading] = useState(false)
   const handleRequest = async (method, endpoint = '', body = {}, params = {}, headers = {}, success) => {
     try {
-      console.log(`${baseUrl}/${endpoint}`)
       setLoading(true)
       let response = await axios.request({
         method,
@@ -26,9 +25,7 @@ const useApi = () => {
         params,
         headers
       })
-      if (!success) {
-        response = { ...response.data, success: true }
-      }
+      response = { ...response.data, success: true }
       setData(response.data)
       setLoading(false)
       setErrorHandle(null) // Limpiar el estado de error en caso de éxito

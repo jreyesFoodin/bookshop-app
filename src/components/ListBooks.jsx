@@ -1,12 +1,11 @@
 import { Card, Button, Col, Stack } from 'react-bootstrap'
 
 const ListBooks = ({ item }) => {
-  console.log(item)
   return (
     <>
       <Col>
         <Card>
-          <Card.Img variant='top' src={item.urlImg} />
+          <Card.Img variant='top' width={200} height={300} src={item.urlImg} />
           <Card.Body>
             <Card.Title>{item.nameBook}</Card.Title>
             <Card.Text>
