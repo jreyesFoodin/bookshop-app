@@ -9,7 +9,20 @@ import Header from './components/Header'
 import './App.css'
 
 const App = () => {
-  const { handleClickButton, show, status, loading, handleActionForm, filteredData, handleClose, info, handleEditForm, handledButtonRemove, searchTerm, handleSearch } = useBooksInit()
+  const {
+    filteredData,
+    status,
+    loading,
+    info,
+    show,
+    searchTerm,
+    handleClickButton,
+    handleActionForm,
+    handleClose,
+    handleEditForm,
+    handledButtonRemove,
+    handleSearch
+  } = useBooksInit()
   return (
     <ContainerCustoms>
       <ModalForm

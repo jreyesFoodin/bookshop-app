@@ -5,8 +5,10 @@ const ListBooks = ({ item, handleEditForm, handledButtonRemove }) => {
     <>
       <Col>
         <Card>
-          <Card.Img variant='top' width={200} height={300} src={item.urlImg} />
           <Card.Body>
+            <div className='col-md-5 mx-auto'>
+              <img className='mb-3 size-portal' src={item.urlImg} />
+            </div>
             <Card.Title>{item.nameBook}</Card.Title>
             <Card.Text style={{ overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 1 }}>
               {item.descriptionBook}

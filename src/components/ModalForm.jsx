@@ -19,7 +19,7 @@ const ModalForm = ({ show, handleClose, status, handleActionForm, info }) => {
     if (status === 'edit') {
       setIdBook(info.id)
     }
-  }, [])
+  }, [status])
   const validationSchema = Yup.object({
     nameBook: Yup.string().required('El nombre del libro es obligatorio'),
     descriptionBook: Yup.string().required('La descripción del libro es obligatoria'),

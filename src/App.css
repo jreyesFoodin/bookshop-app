@@ -10,3 +10,8 @@
   background-color: #faf9f5;
   height: 100%;
 }
+
+.size-portal {
+  height: 50%;
+  max-width: 100%;
+}
